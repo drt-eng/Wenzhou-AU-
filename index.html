@@ -38,10 +38,10 @@
     }
 
     .animate-flag-scroll { animation: scrollFlags 60s linear infinite; }
-    .animate-fade-up { animation: fadeInUp 0.8s ease forwards; }
-    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-    .blob1 { animation: float1 8s ease-in-out infinite; }
-    .blob2 { animation: float2 10s ease-in-out infinite; }
+    .animate-fade-up     { animation: fadeInUp 0.8s ease forwards; }
+    .pulse-glow          { animation: pulse-glow 2s ease-in-out infinite; }
+    .blob1               { animation: float1 8s ease-in-out infinite; }
+    .blob2               { animation: float2 10s ease-in-out infinite; }
 
     .reveal { opacity: 0; }
     .reveal.visible { opacity: 1; }
@@ -66,67 +66,69 @@
     .gallery-item:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
     .gallery-item.loading { background: #e5e7eb; }
     .gallery-item.loading img { opacity: 0; }
-    .gallery-item.loaded img { opacity: 1; transition: opacity 0.3s ease; }
+    .gallery-item.loaded  img { opacity: 1; transition: opacity 0.3s ease; }
 
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar       { width: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 3px; }
 
-    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    #mobile-menu      { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
     #mobile-menu.open { max-height: 500px; }
 
-    /* LIGHTBOX */
-    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    /* ── LIGHTBOX ── */
+    .lightbox        { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .lightbox.active { opacity: 1; pointer-events: auto; }
-    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 1rem; object-fit: contain; }
-    .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; color: white; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+    .lightbox img    { max-width: 90vw; max-height: 85vh; border-radius: 1rem; object-fit: contain; }
+    .lightbox-close  { position: absolute; top: 1.5rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
     .lightbox-close:hover { background: rgba(255,255,255,0.2); }
-    .lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2.5rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
+    .lightbox-nav    { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.5rem; cursor: pointer; background: rgba(0,0,0,0.5); border-radius: 50%; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 2; }
     .lightbox-nav:hover { background: rgba(255,255,255,0.2); }
-    .lightbox-prev { left: 1.5rem; }
-    .lightbox-next { right: 1.5rem; }
-    .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: white; font-size: 0.9rem; background: rgba(0,0,0,0.5); padding: 4px 16px; border-radius: 999px; z-index: 2; }
+    .lightbox-prev   { left: 1.5rem; }
+    .lightbox-next   { right: 1.5rem; }
+    .lightbox-counter{ position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: #fff; font-size: .9rem; background: rgba(0,0,0,0.5); padding: 4px 16px; border-radius: 999px; z-index: 2; }
 
-    /* VIDEO */
+    /* ── VIDEO ── */
     .video-wrapper {
       position: relative;
       width: 100%;
-      background: #000;
+      background: #111;
       border-radius: 1rem;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
     .video-wrapper video {
       width: 100%;
       height: auto;
-      max-height: 400px;
       display: block;
       border-radius: 1rem;
-      background: #000;
+      background: #111;
+      /* cap height on large screens so both cards look even */
+      max-height: 360px;
+      object-fit: contain;
     }
-
-    /* Video error state */
-    .video-error {
+    .video-fallback {
       display: none;
-      padding: 2rem;
+      padding: 2.5rem 1.5rem;
       text-align: center;
       background: #1f2937;
-      color: #9ca3af;
       border-radius: 1rem;
     }
-    .video-error.show { display: block; }
+    .video-fallback.show { display: block; }
 
-    .value-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; }
+    .value-icon  { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; }
     .vision-line { display: block; line-height: 1.8; }
   </style>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
 
-<!-- HEADER -->
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
+
       <a href="#home" class="flex items-center gap-3">
         <img src="logo.png" alt="WAU Logo" class="w-12 h-12 rounded-full object-cover shadow-md" />
         <div>
@@ -145,20 +147,15 @@
         <a href="#contact"    class="text-gray-700 hover:text-green-600 transition">Contact</a>
       </nav>
 
-      <button
-        id="hamburger"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Toggle navigation menu"
-        class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
-      >
+      <button id="hamburger" aria-expanded="false" aria-controls="mobile-menu"
+              aria-label="Toggle navigation" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition">
         <svg id="icon-menu"  class="w-6 h-6"        fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden bg-white border-t" role="navigation" aria-label="Mobile navigation">
+  <div id="mobile-menu" class="md:hidden bg-white border-t">
     <nav class="flex flex-col p-4 gap-1">
       <a href="#home"       class="px-4 py-2 rounded-lg hover:bg-gray-100" onclick="closeMobileMenu()">Home</a>
       <a href="#about"      class="px-4 py-2 rounded-lg hover:bg-gray-100" onclick="closeMobileMenu()">About</a>
@@ -171,26 +168,34 @@
   </div>
 </header>
 
-<!-- SCROLLING FLAGS -->
-<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden" style="background: var(--gradient-pan-african)">
+<!-- ══════════════════════════════════════
+     SCROLLING FLAGS
+══════════════════════════════════════ -->
+<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden"
+     style="background: var(--gradient-pan-african)">
   <div class="animate-flag-scroll flex gap-4 whitespace-nowrap" style="width:max-content">
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
+<!-- ══════════════════════════════════════
+     LIGHTBOX
+══════════════════════════════════════ -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-  <div class="lightbox-close" id="lightbox-close-btn" aria-label="Close">✕</div>
-  <div class="lightbox-nav lightbox-prev" id="lightbox-prev-btn" aria-label="Previous image">‹</div>
-  <div class="lightbox-nav lightbox-next" id="lightbox-next-btn" aria-label="Next image">›</div>
-  <img id="lightbox-img" src="" alt="Gallery image" />
-  <div id="lightbox-counter" class="lightbox-counter">1 / 20</div>
+  <div id="lb-close" class="lightbox-close" aria-label="Close">✕</div>
+  <div id="lb-prev"  class="lightbox-nav lightbox-prev" aria-label="Previous">‹</div>
+  <div id="lb-next"  class="lightbox-nav lightbox-next" aria-label="Next">›</div>
+  <img id="lb-img" src="" alt="" />
+  <div id="lb-counter" class="lightbox-counter">1 / 20</div>
 </div>
 
+<!-- ══════════════════════════════════════
+     MAIN
+══════════════════════════════════════ -->
 <main class="pt-28">
 
-  <!-- ═══════════ HERO ═══════════ -->
+  <!-- HERO -->
   <section id="home" class="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
     <div class="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl blob1 pointer-events-none" style="background:rgba(74,222,128,0.15)"></div>
     <div class="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl blob2 pointer-events-none" style="background:rgba(250,204,21,0.15)"></div>
@@ -201,54 +206,34 @@
           <img src="logo.png" alt="WAU Logo" class="w-full h-full object-cover" />
         </div>
       </div>
-
       <h1 class="text-5xl md:text-7xl font-bold mb-4 text-gradient-g2r">Wenzhou African Union</h1>
       <p class="text-xl md:text-2xl text-gray-600 mb-4 font-medium">Uniting Africa in Wenzhou Since 2022</p>
       <p class="text-lg text-gray-500 mb-10 max-w-3xl mx-auto leading-relaxed">
-        A vibrant community organization bringing together Africans from all 54 nations
-        living in Wenzhou, China. We celebrate our heritage, support each other,
-        and build bridges between cultures.
+        A vibrant community organization bringing together Africans from all 54 nations living in Wenzhou, China.
+        We celebrate our heritage, support each other, and build bridges between cultures.
       </p>
-
       <div class="flex flex-wrap gap-4 justify-center">
-        <a href="#about" class="px-8 py-4 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all" style="background:linear-gradient(to right,#16a34a,#15803d)">
-          Learn About Us ↓
-        </a>
+        <a href="#about" class="px-8 py-4 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+           style="background:linear-gradient(to right,#16a34a,#15803d)">Learn About Us ↓</a>
         <a href="#leadership" class="px-8 py-4 bg-white text-green-700 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all border-2 border-green-200 hover:border-green-500">
-          👥 Our Leaders
-        </a>
+          👥 Our Leaders</a>
       </div>
-
-      <!-- Stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 max-w-3xl mx-auto">
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-          <div class="text-3xl font-black text-green-600">54</div>
-          <div class="text-sm text-gray-600 font-medium">Nations United</div>
-        </div>
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-          <div class="text-3xl font-black text-yellow-600">2022</div>
-          <div class="text-sm text-gray-600 font-medium">Established</div>
-        </div>
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-          <div class="text-3xl font-black text-red-600">6</div>
-          <div class="text-sm text-gray-600 font-medium">Executive Leaders</div>
-        </div>
-        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-          <div class="text-3xl font-black text-purple-600">∞</div>
-          <div class="text-sm text-gray-600 font-medium">Community Spirit</div>
-        </div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg"><div class="text-3xl font-black text-green-600">54</div><div class="text-sm text-gray-600 font-medium">Nations United</div></div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg"><div class="text-3xl font-black text-yellow-600">2022</div><div class="text-sm text-gray-600 font-medium">Established</div></div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg"><div class="text-3xl font-black text-red-600">6</div><div class="text-sm text-gray-600 font-medium">Executive Leaders</div></div>
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg"><div class="text-3xl font-black text-purple-600">∞</div><div class="text-sm text-gray-600 font-medium">Community Spirit</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ ABOUT ═══════════ -->
+  <!-- ABOUT -->
   <section id="about" class="py-20 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16 reveal">
         <div class="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-bold mb-4">🌍 Who We Are</div>
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-g2y">About the Wenzhou African Union</h2>
       </div>
-
       <div class="grid md:grid-cols-2 gap-8 items-start mb-16">
         <div class="reveal">
           <h3 class="text-2xl font-bold mb-4 text-gray-800">Our Story</h3>
@@ -273,8 +258,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Africa Day -->
       <div class="bg-gradient-to-br from-red-50 to-orange-100 p-8 md:p-12 rounded-2xl shadow-xl reveal">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
@@ -300,13 +283,12 @@
     </div>
   </section>
 
-  <!-- ═══════════ VISION & MISSION ═══════════ -->
+  <!-- VISION & MISSION -->
   <section id="vision" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16 reveal">
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-g2y">Our Vision & Mission</h2>
       </div>
-
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl shadow-xl reveal card-hover border-l-4 border-green-600">
           <div class="text-5xl mb-4">👁️</div>
@@ -326,7 +308,6 @@
             <div class="flex items-start gap-2"><span class="text-green-600 font-bold mt-0.5">→</span><span>African <strong>talent, innovation, and excellence</strong> are recognized and celebrated</span></div>
           </div>
         </div>
-
         <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl shadow-xl reveal card-hover border-l-4 border-yellow-600">
           <div class="text-5xl mb-4">🎯</div>
           <h3 class="text-2xl font-bold mb-6 text-yellow-800">Our Mission</h3>
@@ -336,18 +317,18 @@
             <span class="vision-line">through the following pillars:</span>
           </div>
           <div class="space-y-4 text-gray-700">
-            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">1</span><span><strong>Cultural Exchange:</strong> Organizing events that showcase African heritage and foster understanding between African and Chinese communities</span></div>
-            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">2</span><span><strong>Community Welfare:</strong> Providing support, assistance, and advocacy for Africans in Wenzhou</span></div>
-            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">3</span><span><strong>Business Development:</strong> Supporting African entrepreneurs and connecting them with opportunities</span></div>
-            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">4</span><span><strong>Recognition:</strong> Celebrating African achievements through annual awards and events</span></div>
-            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">5</span><span><strong>Unity:</strong> Bringing together all 54 African nations under one unified banner</span></div>
+            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">1</span><span><strong>Cultural Exchange:</strong> Organizing events that showcase African heritage</span></div>
+            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">2</span><span><strong>Community Welfare:</strong> Providing support, assistance, and advocacy</span></div>
+            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">3</span><span><strong>Business Development:</strong> Supporting African entrepreneurs</span></div>
+            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">4</span><span><strong>Recognition:</strong> Celebrating African achievements through annual awards</span></div>
+            <div class="flex items-start gap-3"><span class="bg-yellow-200 text-yellow-800 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">5</span><span><strong>Unity:</strong> Bringing together all 54 African nations under one banner</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ CORE VALUES ═══════════ -->
+  <!-- CORE VALUES -->
   <section id="values" class="py-20 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16 reveal">
@@ -355,41 +336,17 @@
         <p class="text-gray-600 text-lg max-w-2xl mx-auto">These principles guide everything we do</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-green-200 text-green-700">🤝</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Unity</h3>
-          <p class="text-gray-600">One Africa, one community. We stand together regardless of nationality, language, or background.</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-yellow-200 text-yellow-700">⭐</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Excellence</h3>
-          <p class="text-gray-600">We recognize and celebrate outstanding achievements. Every African making a difference deserves to be honored.</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-red-200 text-red-700">🎭</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Culture</h3>
-          <p class="text-gray-600">Our heritage is our pride. We celebrate African art, music, food, fashion, and traditions.</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-blue-200 text-blue-700">💪</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Empowerment</h3>
-          <p class="text-gray-600">We believe in lifting each other up through mentorship, business support, and community programs.</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-purple-200 text-purple-700">🌉</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Bridge Building</h3>
-          <p class="text-gray-600">We foster friendship and cooperation between African and Chinese communities.</p>
-        </div>
-        <div class="text-center p-8 bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl shadow-lg reveal card-hover">
-          <div class="value-icon bg-pink-200 text-pink-700">❤️</div>
-          <h3 class="text-xl font-bold mb-3 text-gray-800">Service</h3>
-          <p class="text-gray-600">We serve our community with dedication and love. Every member contributes to making our community stronger.</p>
-        </div>
+        <div class="text-center p-8 bg-gradient-to-br from-green-50  to-green-100  rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-green-200  text-green-700">🤝</div><h3 class="text-xl font-bold mb-3 text-gray-800">Unity</h3><p class="text-gray-600">One Africa, one community. We stand together regardless of nationality, language, or background.</p></div>
+        <div class="text-center p-8 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-yellow-200 text-yellow-700">⭐</div><h3 class="text-xl font-bold mb-3 text-gray-800">Excellence</h3><p class="text-gray-600">We recognize and celebrate outstanding achievements. Every African making a difference deserves to be honored.</p></div>
+        <div class="text-center p-8 bg-gradient-to-br from-red-50    to-red-100    rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-red-200    text-red-700">🎭</div><h3 class="text-xl font-bold mb-3 text-gray-800">Culture</h3><p class="text-gray-600">Our heritage is our pride. We celebrate African art, music, food, fashion, and traditions.</p></div>
+        <div class="text-center p-8 bg-gradient-to-br from-blue-50   to-blue-100   rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-blue-200   text-blue-700">💪</div><h3 class="text-xl font-bold mb-3 text-gray-800">Empowerment</h3><p class="text-gray-600">We believe in lifting each other up through mentorship, business support, and community programs.</p></div>
+        <div class="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-purple-200 text-purple-700">🌉</div><h3 class="text-xl font-bold mb-3 text-gray-800">Bridge Building</h3><p class="text-gray-600">We foster friendship and cooperation between African and Chinese communities.</p></div>
+        <div class="text-center p-8 bg-gradient-to-br from-pink-50   to-pink-100   rounded-2xl shadow-lg reveal card-hover"><div class="value-icon bg-pink-200   text-pink-700">❤️</div><h3 class="text-xl font-bold mb-3 text-gray-800">Service</h3><p class="text-gray-600">We serve our community with dedication and love. Every member contributes to making our community stronger.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════ LEADERSHIP ═══════════ -->
+  <!-- LEADERSHIP -->
   <section id="leadership" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16 reveal">
@@ -402,11 +359,10 @@
           <div class="inline-block bg-green-100 text-green-800 px-5 py-2 rounded-full text-sm font-bold">👔 Executive Committee</div>
         </div>
 
-        <!-- President -->
         <div class="max-w-lg mx-auto mb-10 reveal">
           <div class="leader-card bg-gradient-to-br from-green-50 via-yellow-50 to-red-50 p-8 rounded-2xl shadow-xl text-center border-2 border-green-200">
             <div class="w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden shadow-2xl border-4 border-white">
-              <img src="leaders/president.jpg" alt="Dr Stephen Akiti" class="w-full h-full object-cover" loading="lazy" decoding="async"
+              <img src="leaders/president.jpg" alt="Dr Stephen Akiti" class="w-full h-full object-cover" loading="lazy"
                    onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-green-200 to-green-300 flex items-center justify-center text-5xl\'>👤</div>';" />
             </div>
             <div class="inline-block bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">President</div>
@@ -415,12 +371,11 @@
           </div>
         </div>
 
-        <!-- VP + Gen Secretary -->
         <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-8">
           <div class="reveal">
             <div class="leader-card bg-white p-6 rounded-2xl shadow-xl text-center border-2 border-transparent hover:border-yellow-400">
               <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                <img src="leaders/vice-president.jpg" alt="Dr Kamara Saidu" class="w-full h-full object-cover" loading="lazy" decoding="async"
+                <img src="leaders/vice-president.jpg" alt="Dr Kamara Saidu" class="w-full h-full object-cover" loading="lazy"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-300 flex items-center justify-center text-4xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Vice President</div>
@@ -430,7 +385,7 @@
           <div class="reveal">
             <div class="leader-card bg-white p-6 rounded-2xl shadow-xl text-center border-2 border-transparent hover:border-blue-400">
               <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                <img src="leaders/general-secretary.jpg" alt="Lydia Odjwang" class="w-full h-full object-cover" loading="lazy" decoding="async"
+                <img src="leaders/general-secretary.jpg" alt="Lydia Odjwang" class="w-full h-full object-cover" loading="lazy"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center text-4xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">General Secretary</div>
@@ -439,12 +394,11 @@
           </div>
         </div>
 
-        <!-- Other Executives -->
         <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-purple-400">
               <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                <img src="leaders/financial-secretary.jpg" alt="Refiloe L Mahlatsi" class="w-full h-full object-cover" loading="lazy" decoding="async"
+                <img src="leaders/financial-secretary.jpg" alt="Refiloe L Mahlatsi" class="w-full h-full object-cover" loading="lazy"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-purple-200 to-purple-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Financial Secretary</div>
@@ -454,7 +408,7 @@
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-red-400">
               <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                <img src="leaders/organizing-secretary.jpg" alt="Dr Tinotenda B Madzikatire" class="w-full h-full object-cover" loading="lazy" decoding="async"
+                <img src="leaders/organizing-secretary.jpg" alt="Dr Tinotenda B Madzikatire" class="w-full h-full object-cover" loading="lazy"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-red-200 to-red-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Organizing Secretary</div>
@@ -464,7 +418,7 @@
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-teal-400">
               <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
-                <img src="leaders/foreign-affairs.jpg" alt="Dr Percy Akuetteh" class="w-full h-full object-cover" loading="lazy" decoding="async"
+                <img src="leaders/foreign-affairs.jpg" alt="Dr Percy Akuetteh" class="w-full h-full object-cover" loading="lazy"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-teal-200 to-teal-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Foreign Affairs Officer</div>
@@ -504,93 +458,77 @@
     </div>
   </section>
 
-  <!-- ═══════════ GALLERY & VIDEOS ═══════════ -->
+  <!-- GALLERY & VIDEOS -->
   <section id="gallery" class="py-20 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
+
       <div class="text-center mb-12 reveal">
         <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gradient-g2y">Our Moments</h2>
         <p class="text-gray-600 text-lg">Memories from our events, celebrations, and community gatherings</p>
       </div>
 
-      <!-- ═══ VIDEOS ═══ -->
+      <!-- ══ VIDEOS — 100% local MP4 files ══ -->
       <div class="mb-16 reveal">
         <h3 class="text-2xl font-bold text-gray-800 mb-6">🎬 Videos</h3>
         <div class="grid md:grid-cols-2 gap-8">
 
-          <!-- VIDEO 1 -->
+          <!-- Video 1 -->
           <div>
-            <div class="video-wrapper" id="video-wrap-1">
-              <video
-                id="vid1"
-                controls
-                preload="metadata"
-                playsinline
-                aria-label="WAU Community Event Video 1"
-              >
+            <div class="video-wrapper" id="vw1">
+              <video id="v1" controls preload="metadata" playsinline>
                 <source src="gallery/video-1.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
               </video>
             </div>
-            <!-- shown only if video fails to load -->
-            <div class="video-error" id="video-error-1">
-              <div class="text-4xl mb-3">🎬</div>
-              <p class="font-bold text-white mb-1">Video unavailable</p>
-              <p class="text-sm mb-4">The video could not be loaded.</p>
+            <div class="video-fallback" id="vf1">
+              <div class="text-5xl mb-3">🎬</div>
+              <p class="font-bold text-white mb-1">Video could not load</p>
+              <p class="text-gray-400 text-sm mb-4">Make sure <code>gallery/video-1.mp4</code> is in your repository.</p>
               <a href="gallery/video-1.mp4" download
                  class="inline-block px-5 py-2 bg-green-600 text-white rounded-full text-sm font-bold hover:bg-green-700 transition">
                 ⬇️ Download Video
               </a>
             </div>
-            <p class="text-center text-sm text-gray-500 mt-3 font-medium">WAU Community Event</p>
+            <p class="text-center text-sm text-gray-500 mt-3">WAU Community Event</p>
           </div>
 
-          <!-- VIDEO 2 -->
+          <!-- Video 2 -->
           <div>
-            <div class="video-wrapper" id="video-wrap-2">
-              <video
-                id="vid2"
-                controls
-                preload="metadata"
-                playsinline
-                aria-label="WAU Community Event Video 2"
-              >
+            <div class="video-wrapper" id="vw2">
+              <video id="v2" controls preload="metadata" playsinline>
                 <source src="gallery/video-2.mp4" type="video/mp4">
-                Your browser does not support HTML5 video.
               </video>
             </div>
-            <div class="video-error" id="video-error-2">
-              <div class="text-4xl mb-3">🎬</div>
-              <p class="font-bold text-white mb-1">Video unavailable</p>
-              <p class="text-sm mb-4">The video could not be loaded.</p>
+            <div class="video-fallback" id="vf2">
+              <div class="text-5xl mb-3">🎬</div>
+              <p class="font-bold text-white mb-1">Video could not load</p>
+              <p class="text-gray-400 text-sm mb-4">Make sure <code>gallery/video-2.mp4</code> is in your repository.</p>
               <a href="gallery/video-2.mp4" download
                  class="inline-block px-5 py-2 bg-green-600 text-white rounded-full text-sm font-bold hover:bg-green-700 transition">
                 ⬇️ Download Video
               </a>
             </div>
-            <p class="text-center text-sm text-gray-500 mt-3 font-medium">WAU Community Celebration</p>
+            <p class="text-center text-sm text-gray-500 mt-3">WAU Community Celebration</p>
           </div>
 
         </div>
       </div>
 
-      <!-- ═══ PHOTO GALLERY ═══ -->
+      <!-- PHOTOS -->
       <div class="reveal">
         <h3 class="text-2xl font-bold text-gray-800 mb-6">📸 Photo Gallery</h3>
-        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <!-- Injected by JS -->
-        </div>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
       </div>
+
     </div>
   </section>
 
-  <!-- ═══════════ CONTACT ═══════════ -->
+  <!-- CONTACT -->
   <section id="contact" class="py-20 px-4 bg-gradient-to-br from-green-50 to-yellow-50">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-12 reveal">
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient-g2y">Get In Touch</h2>
         <p class="text-gray-600 text-lg">Connect with us and be part of the African community in Wenzhou</p>
       </div>
-
       <div class="bg-white p-8 rounded-2xl shadow-xl reveal">
         <div class="text-center mb-8">
           <p class="text-lg text-gray-700 mb-4">For inquiries, partnerships, or to join our community</p>
@@ -600,31 +538,24 @@
         <div class="grid md:grid-cols-2 gap-6">
           <div class="flex items-center gap-4 p-4 bg-green-50 rounded-xl card-hover">
             <span class="text-2xl">📞</span>
-            <div>
-              <p class="text-sm text-gray-600 font-semibold">Phone / WhatsApp</p>
-              <a href="tel:+8615057766855" class="text-lg font-bold text-gray-800 hover:text-green-600 transition">+86 15057766855</a>
-            </div>
+            <div><p class="text-sm text-gray-600 font-semibold">Phone / WhatsApp</p>
+              <a href="tel:+8615057766855" class="text-lg font-bold text-gray-800 hover:text-green-600 transition">+86 15057766855</a></div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-pink-50 rounded-xl card-hover">
             <span class="text-2xl">📸</span>
-            <div>
-              <p class="text-sm text-gray-600 font-semibold">Instagram</p>
-              <a href="https://instagram.com/wenzhou_au" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-800 hover:text-pink-600 transition">@wenzhou_au</a>
-            </div>
+            <div><p class="text-sm text-gray-600 font-semibold">Instagram</p>
+              <a href="https://instagram.com/wenzhou_au" target="_blank" rel="noopener noreferrer"
+                 class="text-lg font-bold text-gray-800 hover:text-pink-600 transition">@wenzhou_au</a></div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl card-hover">
             <span class="text-2xl">✉️</span>
-            <div>
-              <p class="text-sm text-gray-600 font-semibold">Email</p>
-              <a href="mailto:info@wauwenzhou.org" class="text-lg font-bold text-gray-800 hover:text-blue-600 transition">info@wauwenzhou.org</a>
-            </div>
+            <div><p class="text-sm text-gray-600 font-semibold">Email</p>
+              <a href="mailto:info@wauwenzhou.org" class="text-lg font-bold text-gray-800 hover:text-blue-600 transition">info@wauwenzhou.org</a></div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-yellow-50 rounded-xl card-hover">
             <span class="text-2xl">📍</span>
-            <div>
-              <p class="text-sm text-gray-600 font-semibold">Location</p>
-              <p class="text-lg font-bold text-gray-800">Wenzhou, Zhejiang, China</p>
-            </div>
+            <div><p class="text-sm text-gray-600 font-semibold">Location</p>
+              <p class="text-lg font-bold text-gray-800">Wenzhou, Zhejiang, China</p></div>
           </div>
         </div>
       </div>
@@ -648,21 +579,18 @@
 </footer>
 
 <script>
-/* ═══════════════════════════════════════
-   MOBILE MENU
-═══════════════════════════════════════ */
+/* ── MOBILE MENU ── */
 const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 const iconMenu   = document.getElementById('icon-menu');
 const iconClose  = document.getElementById('icon-close');
 
 hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  iconMenu.classList.toggle('hidden', isOpen);
-  iconClose.classList.toggle('hidden', !isOpen);
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+  iconMenu.classList.toggle('hidden', open);
+  iconClose.classList.toggle('hidden', !open);
 });
-
 function closeMobileMenu() {
   mobileMenu.classList.remove('open');
   hamburger.setAttribute('aria-expanded', 'false');
@@ -670,184 +598,135 @@ function closeMobileMenu() {
   iconClose.classList.add('hidden');
 }
 
-/* ═══════════════════════════════════════
-   VIDEO ERROR HANDLING
-   — hides the video player and shows a
-     friendly fallback if the file fails
-═══════════════════════════════════════ */
-function setupVideo(videoId, wrapperId, errorId) {
-  const video   = document.getElementById(videoId);
-  const wrapper = document.getElementById(wrapperId);
-  const errBox  = document.getElementById(errorId);
+/* ── VIDEO ERROR HANDLING ── */
+function initVideo(videoId, wrapperId, fallbackId) {
+  const vid      = document.getElementById(videoId);
+  const wrapper  = document.getElementById(wrapperId);
+  const fallback = document.getElementById(fallbackId);
+  if (!vid) return;
 
-  if (!video) return;
-
-  // Fires when the browser cannot load the video at all
-  video.addEventListener('error', () => {
-    wrapper.style.display = 'none';
-    errBox.classList.add('show');
-    console.warn(videoId + ' failed to load:', video.src);
-  });
-
-  // Also catch source-level errors
-  const source = video.querySelector('source');
-  if (source) {
-    source.addEventListener('error', () => {
-      wrapper.style.display = 'none';
-      errBox.classList.add('show');
-      console.warn('Source error for', source.src);
-    });
+  function showFallback() {
+    wrapper.style.display  = 'none';
+    fallback.classList.add('show');
   }
+
+  vid.addEventListener('error', showFallback);
+  vid.querySelector('source').addEventListener('error', showFallback);
 }
 
-setupVideo('vid1', 'video-wrap-1', 'video-error-1');
-setupVideo('vid2', 'video-wrap-2', 'video-error-2');
+initVideo('v1', 'vw1', 'vf1');
+initVideo('v2', 'vw2', 'vf2');
 
-/* ═══════════════════════════════════════
-   GALLERY — built via JS
-═══════════════════════════════════════ */
-const TOTAL_IMAGES = 20;
-const galleryImages = Array.from({ length: TOTAL_IMAGES }, (_, i) => ({
+/* ── GALLERY GRID ── */
+const galleryImages = Array.from({ length: 20 }, (_, i) => ({
   src: `gallery/gallery-${i + 1}.jpg`,
   alt: `WAU Community Moment ${i + 1}`
 }));
 
-const galleryGrid = document.getElementById('gallery-grid');
-
-galleryImages.forEach((imgData, index) => {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'gallery-item loading aspect-square overflow-hidden rounded-xl shadow-lg reveal';
-  wrapper.dataset.index = index;
-  wrapper.setAttribute('role', 'button');
-  wrapper.setAttribute('tabindex', '0');
-  wrapper.setAttribute('aria-label', `View image ${index + 1}`);
+const grid = document.getElementById('gallery-grid');
+galleryImages.forEach((item, idx) => {
+  const div = document.createElement('div');
+  div.className = 'gallery-item loading aspect-square overflow-hidden rounded-xl shadow-lg reveal';
+  div.dataset.index = idx;
+  div.setAttribute('role', 'button');
+  div.setAttribute('tabindex', '0');
+  div.setAttribute('aria-label', `View photo ${idx + 1}`);
 
   const img = document.createElement('img');
-  img.src      = imgData.src;
-  img.alt      = imgData.alt;
+  img.src      = item.src;
+  img.alt      = item.alt;
   img.className = 'w-full h-full object-cover';
   img.loading  = 'lazy';
   img.decoding = 'async';
-  img.width    = 400;
-  img.height   = 400;
+  img.addEventListener('load',  () => { div.classList.replace('loading', 'loaded'); });
+  img.addEventListener('error', () => { div.style.display = 'none'; });
 
-  img.addEventListener('load',  () => { wrapper.classList.remove('loading'); wrapper.classList.add('loaded'); });
-  img.addEventListener('error', () => { wrapper.style.display = 'none'; }); // hide broken images
-
-  wrapper.appendChild(img);
-  galleryGrid.appendChild(wrapper);
+  div.appendChild(img);
+  grid.appendChild(div);
 });
 
-// Click via event delegation
-galleryGrid.addEventListener('click', e => {
-  const item = e.target.closest('[data-index]');
-  if (item) openLightbox(+item.dataset.index);
-});
-
-// Keyboard open
-galleryGrid.addEventListener('keydown', e => {
+grid.addEventListener('click',   e => { const t = e.target.closest('[data-index]'); if (t) openLB(+t.dataset.index); });
+grid.addEventListener('keydown', e => {
   if (e.key === 'Enter' || e.key === ' ') {
-    const item = e.target.closest('[data-index]');
-    if (item) { e.preventDefault(); openLightbox(+item.dataset.index); }
+    const t = e.target.closest('[data-index]');
+    if (t) { e.preventDefault(); openLB(+t.dataset.index); }
   }
 });
 
-/* ═══════════════════════════════════════
-   LIGHTBOX
-═══════════════════════════════════════ */
-let currentIndex = 0;
-const lightbox    = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxCtr = document.getElementById('lightbox-counter');
+/* ── LIGHTBOX ── */
+let cur = 0;
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-counter');
 
-function openLightbox(index) {
-  currentIndex = index;
-  lightboxImg.src = galleryImages[index].src;
-  lightboxImg.alt = galleryImages[index].alt;
-  lightboxCtr.textContent = `${index + 1} / ${galleryImages.length}`;
-  lightbox.classList.add('active');
+function openLB(idx) {
+  cur = idx;
+  lbImg.src = galleryImages[idx].src;
+  lbImg.alt = galleryImages[idx].alt;
+  lbCount.textContent = `${idx + 1} / ${galleryImages.length}`;
+  lb.classList.add('active');
   document.body.style.overflow = 'hidden';
-  preloadAdjacent(index);
+  preload(idx);
 }
-
-function closeLightboxDirect() {
-  lightbox.classList.remove('active');
+function closeLB() {
+  lb.classList.remove('active');
   document.body.style.overflow = '';
 }
-
-function navigateLightbox(dir) {
-  currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
-  lightboxImg.src = galleryImages[currentIndex].src;
-  lightboxImg.alt = galleryImages[currentIndex].alt;
-  lightboxCtr.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
-  preloadAdjacent(currentIndex);
+function navLB(dir) {
+  cur = (cur + dir + galleryImages.length) % galleryImages.length;
+  lbImg.src = galleryImages[cur].src;
+  lbImg.alt = galleryImages[cur].alt;
+  lbCount.textContent = `${cur + 1} / ${galleryImages.length}`;
+  preload(cur);
+}
+function preload(idx) {
+  new Image().src = galleryImages[(idx + 1) % galleryImages.length].src;
+  new Image().src = galleryImages[(idx - 1 + galleryImages.length) % galleryImages.length].src;
 }
 
-function preloadAdjacent(index) {
-  const next = (index + 1) % galleryImages.length;
-  const prev = (index - 1 + galleryImages.length) % galleryImages.length;
-  new Image().src = galleryImages[next].src;
-  new Image().src = galleryImages[prev].src;
-}
+lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+document.getElementById('lb-close').addEventListener('click', closeLB);
+document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); navLB(-1); });
+document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); navLB(1); });
 
-// Close on backdrop click
-lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightboxDirect(); });
-
-// Button listeners
-document.getElementById('lightbox-close-btn').addEventListener('click', closeLightboxDirect);
-document.getElementById('lightbox-prev-btn').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(-1); });
-document.getElementById('lightbox-next-btn').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(1); });
-
-// Keyboard
 document.addEventListener('keydown', e => {
-  if (!lightbox.classList.contains('active')) return;
-  if (e.key === 'Escape')     closeLightboxDirect();
-  if (e.key === 'ArrowLeft')  navigateLightbox(-1);
-  if (e.key === 'ArrowRight') navigateLightbox(1);
+  if (!lb.classList.contains('active')) return;
+  if (e.key === 'Escape')     closeLB();
+  if (e.key === 'ArrowLeft')  navLB(-1);
+  if (e.key === 'ArrowRight') navLB(1);
 });
 
-// Touch swipe
-let touchStartX = 0;
-lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-lightbox.addEventListener('touchend',   e => {
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) navigateLightbox(diff > 0 ? 1 : -1);
-}, { passive: true });
+let tx = 0;
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; },        { passive: true });
+lb.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) navLB(d > 0 ? 1 : -1); }, { passive: true });
 
-/* ═══════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    entry.target.style.animation = 'fadeInUp 0.7s ease forwards';
-    revealObserver.unobserve(entry.target);
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('visible');
+    en.target.style.animation = 'fadeInUp 0.7s ease forwards';
+    ro.unobserve(en.target);
   });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => {
-  const inView = el.getBoundingClientRect().top < window.innerHeight;
-  if (inView) {
+  if (el.getBoundingClientRect().top < window.innerHeight) {
     el.classList.add('visible');
     el.style.animation = 'fadeInUp 0.7s ease forwards';
   } else {
-    revealObserver.observe(el);
+    ro.observe(el);
   }
 });
 
-/* ═══════════════════════════════════════
-   ACTIVE NAV + HEADER SHADOW
-═══════════════════════════════════════ */
+/* ── ACTIVE NAV ── */
 window.addEventListener('scroll', () => {
-  let current = '';
-  document.querySelectorAll('section[id]').forEach(s => {
-    if (scrollY >= s.offsetTop - 120) current = s.id;
-  });
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => { if (scrollY >= s.offsetTop - 120) cur = s.id; });
   document.querySelectorAll('nav a[href^="#"]').forEach(a => {
-    const active = a.getAttribute('href') === '#' + current;
-    a.classList.toggle('text-green-600', active);
-    a.classList.toggle('font-bold', active);
+    const on = a.getAttribute('href') === '#' + cur;
+    a.classList.toggle('text-green-600', on);
+    a.classList.toggle('font-bold', on);
   });
   document.getElementById('main-header').classList.toggle('shadow-xl', scrollY > 20);
 }, { passive: true });
