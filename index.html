@@ -29,6 +29,14 @@
       50%       { transform: translate(-20px, -30px); }
     }
 
+    :root {
+      --color-green:  #16a34a;
+      --color-yellow: #ca8a04;
+      --color-red:    #dc2626;
+      --gradient-pan-african: linear-gradient(to right, var(--color-green), var(--color-yellow), var(--color-red));
+      --transition-base: 0.3s ease;
+    }
+
     .animate-flag-scroll { animation: scrollFlags 60s linear infinite; }
     .animate-fade-up { animation: fadeInUp 0.8s ease forwards; }
     .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
@@ -47,19 +55,18 @@
       background: linear-gradient(to right, #16a34a, #ca8a04, #dc2626);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .text-gradient-purple {
-      background: linear-gradient(to right, #9333ea, #db2777);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
 
-    .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card-hover { transition: transform var(--transition-base), box-shadow var(--transition-base); }
     .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
 
-    .leader-card { transition: all 0.3s ease; }
+    .leader-card { transition: all var(--transition-base); }
     .leader-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.15); }
 
-    .gallery-item { transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+    .gallery-item { transition: transform var(--transition-base), box-shadow var(--transition-base); cursor: pointer; }
     .gallery-item:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .gallery-item.loading { background: #e5e7eb; }
+    .gallery-item.loading img { opacity: 0; }
+    .gallery-item.loaded img { opacity: 1; transition: opacity 0.3s ease; }
 
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -79,11 +86,10 @@
     .lightbox-next { right: 1.5rem; }
     .lightbox-counter { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: white; font-size: 0.9rem; background: rgba(0,0,0,0.5); padding: 4px 16px; border-radius: 999px; }
 
-    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; }
-    .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 1rem; }
+    .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 1rem; background: #000; }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 1rem; border: none; }
 
     .value-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; }
-
     .vision-line { display: block; line-height: 1.8; }
   </style>
 </head>
@@ -112,14 +118,20 @@
         <a href="#contact" class="text-gray-700 hover:text-green-600 transition">Contact</a>
       </nav>
 
-      <button id="hamburger" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition">
+      <button
+        id="hamburger"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Toggle navigation menu"
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
+      >
         <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
   </div>
 
-  <div id="mobile-menu" class="md:hidden bg-white border-t">
+  <div id="mobile-menu" class="md:hidden bg-white border-t" role="navigation" aria-label="Mobile navigation">
     <nav class="flex flex-col p-4 gap-1">
       <a href="#home" class="px-4 py-2 rounded-lg hover:bg-gray-100" onclick="closeMobileMenu()">Home</a>
       <a href="#about" class="px-4 py-2 rounded-lg hover:bg-gray-100" onclick="closeMobileMenu()">About</a>
@@ -133,7 +145,7 @@
 </header>
 
 <!-- SCROLLING FLAGS -->
-<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden" style="background:linear-gradient(to right,#16a34a,#ca8a04,#dc2626)">
+<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden" style="background: var(--gradient-pan-african)">
   <div class="animate-flag-scroll flex gap-4 whitespace-nowrap" style="width:max-content">
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
@@ -141,11 +153,11 @@
 </div>
 
 <!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-  <div class="lightbox-close" onclick="closeLightboxDirect()">✕</div>
-  <div class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">‹</div>
-  <div class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">›</div>
-  <img id="lightbox-img" src="" alt="Gallery" />
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lightbox-close" id="lightbox-close-btn" aria-label="Close image viewer">✕</div>
+  <div class="lightbox-nav lightbox-prev" id="lightbox-prev-btn" aria-label="Previous image">‹</div>
+  <div class="lightbox-nav lightbox-next" id="lightbox-next-btn" aria-label="Next image">›</div>
+  <img id="lightbox-img" src="" alt="Gallery image" />
   <div id="lightbox-counter" class="lightbox-counter">1 / 20</div>
 </div>
 
@@ -269,8 +281,6 @@
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-
-        <!-- VISION — straight lines -->
         <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl shadow-xl reveal card-hover border-l-4 border-green-600">
           <div class="text-5xl mb-4">👁️</div>
           <h3 class="text-2xl font-bold mb-6 text-green-800">Our Vision</h3>
@@ -290,7 +300,6 @@
           </div>
         </div>
 
-        <!-- MISSION -->
         <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-2xl shadow-xl reveal card-hover border-l-4 border-yellow-600">
           <div class="text-5xl mb-4">🎯</div>
           <h3 class="text-2xl font-bold mb-6 text-yellow-800">Our Mission</h3>
@@ -372,7 +381,7 @@
         <div class="max-w-lg mx-auto mb-10 reveal">
           <div class="leader-card bg-gradient-to-br from-green-50 via-yellow-50 to-red-50 p-8 rounded-2xl shadow-xl text-center border-2 border-green-200">
             <div class="w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden shadow-2xl border-4 border-white">
-              <img src="leaders/president.jpg" alt="Dr Stephen Akiti" class="w-full h-full object-cover"
+              <img src="leaders/president.jpg" alt="Dr Stephen Akiti" class="w-full h-full object-cover" loading="lazy" decoding="async"
                    onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-green-200 to-green-300 flex items-center justify-center text-5xl\'>👤</div>';" />
             </div>
             <div class="inline-block bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">President</div>
@@ -386,7 +395,7 @@
           <div class="reveal">
             <div class="leader-card bg-white p-6 rounded-2xl shadow-xl text-center border-2 border-transparent hover:border-yellow-400">
               <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                <img src="leaders/vice-president.jpg" alt="Dr Kamara Saidu" class="w-full h-full object-cover"
+                <img src="leaders/vice-president.jpg" alt="Dr Kamara Saidu" class="w-full h-full object-cover" loading="lazy" decoding="async"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-yellow-200 to-yellow-300 flex items-center justify-center text-4xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Vice President</div>
@@ -396,7 +405,7 @@
           <div class="reveal">
             <div class="leader-card bg-white p-6 rounded-2xl shadow-xl text-center border-2 border-transparent hover:border-blue-400">
               <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden shadow-xl border-4 border-white">
-                <img src="leaders/general-secretary.jpg" alt="Lydia Odjwang" class="w-full h-full object-cover"
+                <img src="leaders/general-secretary.jpg" alt="Lydia Odjwang" class="w-full h-full object-cover" loading="lazy" decoding="async"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center text-4xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">General Secretary</div>
@@ -409,8 +418,8 @@
         <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-purple-400">
-              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg border-3 border-white">
-                <img src="leaders/financial-secretary.jpg" alt="Refiloe L Mahlatsi" class="w-full h-full object-cover"
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                <img src="leaders/financial-secretary.jpg" alt="Refiloe L Mahlatsi" class="w-full h-full object-cover" loading="lazy" decoding="async"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-purple-200 to-purple-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Financial Secretary</div>
@@ -419,8 +428,8 @@
           </div>
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-red-400">
-              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg border-3 border-white">
-                <img src="leaders/organizing-secretary.jpg" alt="Dr Tinotenda B Madzikatire" class="w-full h-full object-cover"
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                <img src="leaders/organizing-secretary.jpg" alt="Dr Tinotenda B Madzikatire" class="w-full h-full object-cover" loading="lazy" decoding="async"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-red-200 to-red-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Organizing Secretary</div>
@@ -429,8 +438,8 @@
           </div>
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-teal-400">
-              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg border-3 border-white">
-                <img src="leaders/foreign-affairs.jpg" alt="Dr Percy Akuetteh" class="w-full h-full object-cover"
+              <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden shadow-lg">
+                <img src="leaders/foreign-affairs.jpg" alt="Dr Percy Akuetteh" class="w-full h-full object-cover" loading="lazy" decoding="async"
                      onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'w-full h-full bg-gradient-to-br from-teal-200 to-teal-300 flex items-center justify-center text-3xl\'>👤</div>';" />
               </div>
               <div class="inline-block bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold mb-2 uppercase tracking-wider">Foreign Affairs Officer</div>
@@ -440,7 +449,7 @@
         </div>
       </div>
 
-      <!-- Core Leaders — Countries Only -->
+      <!-- Core Leaders -->
       <div class="reveal">
         <div class="text-center mb-10">
           <div class="inline-block bg-yellow-100 text-yellow-800 px-5 py-2 rounded-full text-sm font-bold mb-2">🌍 Core Leaders</div>
@@ -449,76 +458,23 @@
         </div>
 
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
-
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇧🇼</div>
-            <p class="text-sm font-bold text-gray-800">Botswana</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇿🇲</div>
-            <p class="text-sm font-bold text-gray-800">Zambia</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇱🇸</div>
-            <p class="text-sm font-bold text-gray-800">Lesotho</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇲🇦</div>
-            <p class="text-sm font-bold text-gray-800">Morocco</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇧🇮</div>
-            <p class="text-sm font-bold text-gray-800">Burundi</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇬🇭</div>
-            <p class="text-sm font-bold text-gray-800">Ghana</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇳🇦</div>
-            <p class="text-sm font-bold text-gray-800">Namibia</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇰🇪</div>
-            <p class="text-sm font-bold text-gray-800">Kenya</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇱🇷</div>
-            <p class="text-sm font-bold text-gray-800">Liberia</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇸🇱</div>
-            <p class="text-sm font-bold text-gray-800">Sierra Leone</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇨🇲</div>
-            <p class="text-sm font-bold text-gray-800">Cameroon</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇨🇫</div>
-            <p class="text-sm font-bold text-gray-800">C.A.R.</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇩🇯</div>
-            <p class="text-sm font-bold text-gray-800">Djibouti</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇲🇼</div>
-            <p class="text-sm font-bold text-gray-800">Malawi</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇸🇴</div>
-            <p class="text-sm font-bold text-gray-800">Somalia</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇺🇬</div>
-            <p class="text-sm font-bold text-gray-800">Uganda</p>
-          </div>
-          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400">
-            <div class="text-4xl mb-2">🇦🇴</div>
-            <p class="text-sm font-bold text-gray-800">Angola</p>
-          </div>
-
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇼</div><p class="text-sm font-bold text-gray-800">Botswana</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇿🇲</div><p class="text-sm font-bold text-gray-800">Zambia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇸</div><p class="text-sm font-bold text-gray-800">Lesotho</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇦</div><p class="text-sm font-bold text-gray-800">Morocco</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇮</div><p class="text-sm font-bold text-gray-800">Burundi</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇬🇭</div><p class="text-sm font-bold text-gray-800">Ghana</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇳🇦</div><p class="text-sm font-bold text-gray-800">Namibia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇰🇪</div><p class="text-sm font-bold text-gray-800">Kenya</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇷</div><p class="text-sm font-bold text-gray-800">Liberia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇱</div><p class="text-sm font-bold text-gray-800">Sierra Leone</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇲</div><p class="text-sm font-bold text-gray-800">Cameroon</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇫</div><p class="text-sm font-bold text-gray-800">C.A.R.</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇩🇯</div><p class="text-sm font-bold text-gray-800">Djibouti</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇼</div><p class="text-sm font-bold text-gray-800">Malawi</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇴</div><p class="text-sm font-bold text-gray-800">Somalia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇺🇬</div><p class="text-sm font-bold text-gray-800">Uganda</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇦🇴</div><p class="text-sm font-bold text-gray-800">Angola</p></div>
         </div>
       </div>
     </div>
@@ -532,49 +488,68 @@
         <p class="text-gray-600 text-lg">Memories from our events, celebrations, and community gatherings</p>
       </div>
 
-      <!-- Videos -->
+      <!-- ═══ VIDEOS — YouTube embeds (most reliable) ═══ -->
       <div class="mb-16 reveal">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6">🎬 Videos</h3>
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">🎬 Videos</h3>
+        <p class="text-gray-500 text-sm mb-6">
+          Replace <code class="bg-gray-100 px-1 rounded">YOUR_VIDEO_ID</code> below with your actual YouTube video IDs.
+          Example: if your URL is <em>youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong></em>, use <em>dQw4w9WgXcQ</em>.
+        </p>
+
         <div class="grid md:grid-cols-2 gap-6">
-          <div class="video-container shadow-xl">
-            <video controls poster="gallery/video-poster-1.jpg">
-              <source src="gallery/video-1.mp4" type="video/mp4">
-              Your browser does not support video.
-            </video>
+
+          <!-- Video 1 -->
+          <div>
+            <div class="video-wrapper shadow-xl">
+              <!--
+                INSTRUCTIONS:
+                1. Upload your video to YouTube (can be Unlisted for privacy)
+                2. Copy the video ID from the URL
+                3. Replace YOUR_VIDEO_ID_1 below with your actual ID
+              -->
+              <iframe
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1"
+                title="WAU Community Event Video 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-2">WAU Community Event</p>
           </div>
-          <div class="video-container shadow-xl">
-            <video controls poster="gallery/video-poster-2.jpg">
-              <source src="gallery/video-2.mp4" type="video/mp4">
-              Your browser does not support video.
-            </video>
+
+          <!-- Video 2 -->
+          <div>
+            <div class="video-wrapper shadow-xl">
+              <!--
+                Replace YOUR_VIDEO_ID_2 with your actual YouTube video ID
+              -->
+              <iframe
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
+                title="WAU Community Event Video 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-2">WAU Community Celebration</p>
           </div>
+
+        </div>
+
+        <!-- Fallback notice if YouTube is blocked -->
+        <div class="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-xl text-sm text-yellow-800">
+          <strong>📌 Note:</strong> If YouTube is blocked in your region, consider uploading to
+          <a href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer" class="underline font-bold">Bilibili</a>
+          and using their embed code instead.
         </div>
       </div>
 
       <!-- Photos -->
       <div class="reveal">
         <h3 class="text-2xl font-bold text-gray-800 mb-6">📸 Photo Gallery</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(0)"><img src="gallery/gallery-1.jpg" class="w-full h-full object-cover" alt="WAU 1"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(1)"><img src="gallery/gallery-2.jpg" class="w-full h-full object-cover" alt="WAU 2"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(2)"><img src="gallery/gallery-3.jpg" class="w-full h-full object-cover" alt="WAU 3"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(3)"><img src="gallery/gallery-4.jpg" class="w-full h-full object-cover" alt="WAU 4"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(4)"><img src="gallery/gallery-5.jpg" class="w-full h-full object-cover" alt="WAU 5"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(5)"><img src="gallery/gallery-6.jpg" class="w-full h-full object-cover" alt="WAU 6"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(6)"><img src="gallery/gallery-7.jpg" class="w-full h-full object-cover" alt="WAU 7"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(7)"><img src="gallery/gallery-8.jpg" class="w-full h-full object-cover" alt="WAU 8"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(8)"><img src="gallery/gallery-9.jpg" class="w-full h-full object-cover" alt="WAU 9"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(9)"><img src="gallery/gallery-10.jpg" class="w-full h-full object-cover" alt="WAU 10"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(10)"><img src="gallery/gallery-11.jpg" class="w-full h-full object-cover" alt="WAU 11"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(11)"><img src="gallery/gallery-12.jpg" class="w-full h-full object-cover" alt="WAU 12"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(12)"><img src="gallery/gallery-13.jpg" class="w-full h-full object-cover" alt="WAU 13"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(13)"><img src="gallery/gallery-14.jpg" class="w-full h-full object-cover" alt="WAU 14"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(14)"><img src="gallery/gallery-15.jpg" class="w-full h-full object-cover" alt="WAU 15"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(15)"><img src="gallery/gallery-16.jpg" class="w-full h-full object-cover" alt="WAU 16"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(16)"><img src="gallery/gallery-17.jpg" class="w-full h-full object-cover" alt="WAU 17"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(17)"><img src="gallery/gallery-18.jpg" class="w-full h-full object-cover" alt="WAU 18"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(18)"><img src="gallery/gallery-19.jpg" class="w-full h-full object-cover" alt="WAU 19"></div>
-          <div class="gallery-item aspect-square overflow-hidden rounded-xl shadow-lg reveal" onclick="openLightbox(19)"><img src="gallery/gallery-20.jpg" class="w-full h-full object-cover" alt="WAU 20"></div>
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Gallery items injected by JS for cleaner management -->
         </div>
       </div>
     </div>
@@ -598,19 +573,31 @@
         <div class="grid md:grid-cols-2 gap-6">
           <div class="flex items-center gap-4 p-4 bg-green-50 rounded-xl card-hover">
             <span class="text-2xl">📞</span>
-            <div><p class="text-sm text-gray-600 font-semibold">Phone</p><p class="text-lg font-bold text-gray-800">+86 15057766855</p></div>
+            <div>
+              <p class="text-sm text-gray-600 font-semibold">Phone / WhatsApp</p>
+              <a href="tel:+8615057766855" class="text-lg font-bold text-gray-800 hover:text-green-600 transition">+86 15057766855</a>
+            </div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-pink-50 rounded-xl card-hover">
             <span class="text-2xl">📸</span>
-            <div><p class="text-sm text-gray-600 font-semibold">Instagram</p><p class="text-lg font-bold text-gray-800">@wenzhou_au</p></div>
+            <div>
+              <p class="text-sm text-gray-600 font-semibold">Instagram</p>
+              <a href="https://instagram.com/wenzhou_au" target="_blank" rel="noopener noreferrer" class="text-lg font-bold text-gray-800 hover:text-pink-600 transition">@wenzhou_au</a>
+            </div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-xl card-hover">
             <span class="text-2xl">✉️</span>
-            <div><p class="text-sm text-gray-600 font-semibold">Email</p><p class="text-lg font-bold text-gray-800">info@wauwenzhou.org</p></div>
+            <div>
+              <p class="text-sm text-gray-600 font-semibold">Email</p>
+              <a href="mailto:info@wauwenzhou.org" class="text-lg font-bold text-gray-800 hover:text-blue-600 transition">info@wauwenzhou.org</a>
+            </div>
           </div>
           <div class="flex items-center gap-4 p-4 bg-yellow-50 rounded-xl card-hover">
             <span class="text-2xl">📍</span>
-            <div><p class="text-sm text-gray-600 font-semibold">Location</p><p class="text-lg font-bold text-gray-800">Wenzhou, Zhejiang, China</p></div>
+            <div>
+              <p class="text-sm text-gray-600 font-semibold">Location</p>
+              <p class="text-lg font-bold text-gray-800">Wenzhou, Zhejiang, China</p>
+            </div>
           </div>
         </div>
       </div>
@@ -632,85 +619,183 @@
 </footer>
 
 <script>
-'use strict';
-
-/* ── MOBILE MENU ── */
-const hamburger = document.getElementById('hamburger');
+/* ═══════════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════════ */
+const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
-const iconMenu = document.getElementById('icon-menu');
-const iconClose = document.getElementById('icon-close');
+const iconMenu   = document.getElementById('icon-menu');
+const iconClose  = document.getElementById('icon-close');
+
 hamburger.addEventListener('click', () => {
-  const o = mobileMenu.classList.toggle('open');
-  iconMenu.classList.toggle('hidden', o);
-  iconClose.classList.toggle('hidden', !o);
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  iconMenu.classList.toggle('hidden', isOpen);
+  iconClose.classList.toggle('hidden', !isOpen);
 });
+
 function closeMobileMenu() {
   mobileMenu.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
   iconMenu.classList.remove('hidden');
   iconClose.classList.add('hidden');
 }
 
-/* ── LIGHTBOX ── */
-const galleryImages = [];
-for (let i = 1; i <= 20; i++) galleryImages.push('gallery/gallery-' + i + '.jpg');
+/* ═══════════════════════════════════════════
+   GALLERY — build grid via JS (easier to manage)
+═══════════════════════════════════════════ */
+const TOTAL_IMAGES = 20;
+const galleryImages = Array.from({ length: TOTAL_IMAGES }, (_, i) => ({
+  src: `gallery/gallery-${i + 1}.jpg`,
+  alt: `WAU Community Moment ${i + 1}`
+}));
+
+const galleryGrid = document.getElementById('gallery-grid');
+
+galleryImages.forEach((img, index) => {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'gallery-item loading aspect-square overflow-hidden rounded-xl shadow-lg reveal';
+  wrapper.dataset.index = index;
+  wrapper.setAttribute('role', 'button');
+  wrapper.setAttribute('tabindex', '0');
+  wrapper.setAttribute('aria-label', `View image ${index + 1}`);
+
+  const el = document.createElement('img');
+  el.src = img.src;
+  el.alt = img.alt;
+  el.className = 'w-full h-full object-cover';
+  el.loading = 'lazy';
+  el.decoding = 'async';
+  el.width  = 400;
+  el.height = 400;
+
+  el.addEventListener('load', () => {
+    wrapper.classList.remove('loading');
+    wrapper.classList.add('loaded');
+  });
+
+  wrapper.appendChild(el);
+  galleryGrid.appendChild(wrapper);
+});
+
+// Event delegation — no inline onclick needed
+galleryGrid.addEventListener('click', e => {
+  const item = e.target.closest('[data-index]');
+  if (item) openLightbox(+item.dataset.index);
+});
+
+galleryGrid.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    const item = e.target.closest('[data-index]');
+    if (item) { e.preventDefault(); openLightbox(+item.dataset.index); }
+  }
+});
+
+/* ═══════════════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════════════ */
 let currentLightboxIndex = 0;
+const lightbox     = document.getElementById('lightbox');
+const lightboxImg  = document.getElementById('lightbox-img');
+const lightboxCtr  = document.getElementById('lightbox-counter');
 
 function openLightbox(index) {
   currentLightboxIndex = index;
-  document.getElementById('lightbox-img').src = galleryImages[index];
-  document.getElementById('lightbox-counter').textContent = (index + 1) + ' / ' + galleryImages.length;
-  document.getElementById('lightbox').classList.add('active');
+  lightboxImg.src = galleryImages[index].src;
+  lightboxImg.alt = galleryImages[index].alt;
+  lightboxCtr.textContent = `${index + 1} / ${galleryImages.length}`;
+  lightbox.classList.add('active');
   document.body.style.overflow = 'hidden';
-}
 
-function closeLightbox(e) {
-  if (e && e.target !== document.getElementById('lightbox')) return;
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
+  // Preload adjacent images
+  const next = (index + 1) % galleryImages.length;
+  const prev = (index - 1 + galleryImages.length) % galleryImages.length;
+  new Image().src = galleryImages[next].src;
+  new Image().src = galleryImages[prev].src;
 }
 
 function closeLightboxDirect() {
-  document.getElementById('lightbox').classList.remove('active');
+  lightbox.classList.remove('active');
   document.body.style.overflow = '';
 }
 
-function navigateLightbox(dir, e) {
-  if (e) e.stopPropagation();
+function navigateLightbox(dir) {
   currentLightboxIndex = (currentLightboxIndex + dir + galleryImages.length) % galleryImages.length;
-  document.getElementById('lightbox-img').src = galleryImages[currentLightboxIndex];
-  document.getElementById('lightbox-counter').textContent = (currentLightboxIndex + 1) + ' / ' + galleryImages.length;
+  lightboxImg.src = galleryImages[currentLightboxIndex].src;
+  lightboxImg.alt = galleryImages[currentLightboxIndex].alt;
+  lightboxCtr.textContent = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+
+  // Preload next
+  const next = (currentLightboxIndex + dir + galleryImages.length) % galleryImages.length;
+  new Image().src = galleryImages[next].src;
 }
 
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lightbox').classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightboxDirect();
-  if (e.key === 'ArrowLeft') navigateLightbox(-1);
-  if (e.key === 'ArrowRight') navigateLightbox(1);
+// Close on backdrop click (not on image/controls)
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeLightboxDirect();
 });
 
-/* ── SCROLL REVEAL ── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      entry.target.style.animation = 'fadeInUp 0.7s ease forwards';
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Button listeners (no inline handlers)
+document.getElementById('lightbox-close-btn').addEventListener('click', closeLightboxDirect);
+document.getElementById('lightbox-prev-btn').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(-1); });
+document.getElementById('lightbox-next-btn').addEventListener('click', e => { e.stopPropagation(); navigateLightbox(1); });
 
-/* ── ACTIVE NAV ── */
-window.addEventListener('scroll', () => {
-  let current = '';
-  document.querySelectorAll('section[id]').forEach(s => { if (scrollY >= s.offsetTop - 120) current = s.id; });
-  document.querySelectorAll('nav a[href^="#"]').forEach(a => {
-    a.classList.toggle('text-green-600', a.getAttribute('href') === '#' + current);
-    a.classList.toggle('font-bold', a.getAttribute('href') === '#' + current);
-  });
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape')      closeLightboxDirect();
+  if (e.key === 'ArrowLeft')   navigateLightbox(-1);
+  if (e.key === 'ArrowRight')  navigateLightbox(1);
+});
+
+// Touch swipe support
+let touchStartX = 0;
+lightbox.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+}, { passive: true });
+lightbox.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) navigateLightbox(diff > 0 ? 1 : -1);
 }, { passive: true });
 
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    entry.target.style.animation = 'fadeInUp 0.7s ease forwards';
+    revealObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    // Already in view — show immediately without waiting for scroll
+    el.classList.add('visible');
+    el.style.animation = 'fadeInUp 0.7s ease forwards';
+  } else {
+    revealObserver.observe(el);
+  }
+});
+
+/* ═══════════════════════════════════════════
+   ACTIVE NAV HIGHLIGHT
+═══════════════════════════════════════════ */
 window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+    const active = a.getAttribute('href') === '#' + current;
+    a.classList.toggle('text-green-600', active);
+    a.classList.toggle('font-bold', active);
+  });
+
+  // Header shadow on scroll
   document.getElementById('main-header').classList.toggle('shadow-xl', scrollY > 20);
 }, { passive: true });
 </script>
