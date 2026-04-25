@@ -75,7 +75,6 @@
     #mobile-menu      { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
     #mobile-menu.open { max-height: 500px; }
 
-    /* ── LIGHTBOX ── */
     .lightbox        { position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .lightbox.active { opacity: 1; pointer-events: auto; }
     .lightbox img    { max-width: 90vw; max-height: 85vh; border-radius: 1rem; object-fit: contain; }
@@ -87,32 +86,9 @@
     .lightbox-next   { right: 1.5rem; }
     .lightbox-counter{ position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); color: #fff; font-size: .9rem; background: rgba(0,0,0,0.5); padding: 4px 16px; border-radius: 999px; z-index: 2; }
 
-    /* ── VIDEO ── */
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      background: #111;
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-    }
-    .video-wrapper video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 1rem;
-      background: #111;
-      /* cap height on large screens so both cards look even */
-      max-height: 360px;
-      object-fit: contain;
-    }
-    .video-fallback {
-      display: none;
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      background: #1f2937;
-      border-radius: 1rem;
-    }
+    .video-wrapper { position: relative; width: 100%; background: #111; border-radius: 1rem; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.25); }
+    .video-wrapper video { width: 100%; height: auto; display: block; border-radius: 1rem; background: #111; max-height: 360px; object-fit: contain; }
+    .video-fallback { display: none; padding: 2.5rem 1.5rem; text-align: center; background: #1f2937; border-radius: 1rem; }
     .video-fallback.show { display: block; }
 
     .value-icon  { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem; }
@@ -122,13 +98,10 @@
 
 <body class="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
 
-<!-- ══════════════════════════════════════
-     HEADER
-══════════════════════════════════════ -->
+<!-- HEADER -->
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-
       <a href="#home" class="flex items-center gap-3">
         <img src="logo.png" alt="WAU Logo" class="w-12 h-12 rounded-full object-cover shadow-md" />
         <div>
@@ -168,20 +141,15 @@
   </div>
 </header>
 
-<!-- ══════════════════════════════════════
-     SCROLLING FLAGS
-══════════════════════════════════════ -->
-<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden"
-     style="background: var(--gradient-pan-african)">
+<!-- SCROLLING FLAGS -->
+<div class="fixed top-16 left-0 right-0 z-40 py-2 overflow-hidden" style="background: var(--gradient-pan-african)">
   <div class="animate-flag-scroll flex gap-4 whitespace-nowrap" style="width:max-content">
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
     <span class="text-2xl">🇩🇿</span><span class="text-2xl">🇦🇴</span><span class="text-2xl">🇧🇯</span><span class="text-2xl">🇧🇼</span><span class="text-2xl">🇧🇫</span><span class="text-2xl">🇧🇮</span><span class="text-2xl">🇨🇻</span><span class="text-2xl">🇨🇲</span><span class="text-2xl">🇨🇫</span><span class="text-2xl">🇹🇩</span><span class="text-2xl">🇰🇲</span><span class="text-2xl">🇨🇬</span><span class="text-2xl">🇨🇩</span><span class="text-2xl">🇨🇮</span><span class="text-2xl">🇩🇯</span><span class="text-2xl">🇪🇬</span><span class="text-2xl">🇬🇶</span><span class="text-2xl">🇪🇷</span><span class="text-2xl">🇸🇿</span><span class="text-2xl">🇪🇹</span><span class="text-2xl">🇬🇦</span><span class="text-2xl">🇬🇲</span><span class="text-2xl">🇬🇭</span><span class="text-2xl">🇬🇳</span><span class="text-2xl">🇬🇼</span><span class="text-2xl">🇰🇪</span><span class="text-2xl">🇱🇸</span><span class="text-2xl">🇱🇷</span><span class="text-2xl">🇱🇾</span><span class="text-2xl">🇲🇬</span><span class="text-2xl">🇲🇼</span><span class="text-2xl">🇲🇱</span><span class="text-2xl">🇲🇷</span><span class="text-2xl">🇲🇺</span><span class="text-2xl">🇲🇦</span><span class="text-2xl">🇲🇿</span><span class="text-2xl">🇳🇦</span><span class="text-2xl">🇳🇪</span><span class="text-2xl">🇳🇬</span><span class="text-2xl">🇷🇼</span><span class="text-2xl">🇸🇹</span><span class="text-2xl">🇸🇳</span><span class="text-2xl">🇸🇨</span><span class="text-2xl">🇸🇱</span><span class="text-2xl">🇸🇴</span><span class="text-2xl">🇿🇦</span><span class="text-2xl">🇸🇸</span><span class="text-2xl">🇸🇩</span><span class="text-2xl">🇹🇿</span><span class="text-2xl">🇹🇬</span><span class="text-2xl">🇹🇳</span><span class="text-2xl">🇺🇬</span><span class="text-2xl">🇿🇲</span><span class="text-2xl">🇿🇼</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     LIGHTBOX
-══════════════════════════════════════ -->
+<!-- LIGHTBOX -->
 <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
   <div id="lb-close" class="lightbox-close" aria-label="Close">✕</div>
   <div id="lb-prev"  class="lightbox-nav lightbox-prev" aria-label="Previous">‹</div>
@@ -190,9 +158,6 @@
   <div id="lb-counter" class="lightbox-counter">1 / 20</div>
 </div>
 
-<!-- ══════════════════════════════════════
-     MAIN
-══════════════════════════════════════ -->
 <main class="pt-28">
 
   <!-- HERO -->
@@ -258,6 +223,7 @@
           </div>
         </div>
       </div>
+
       <div class="bg-gradient-to-br from-red-50 to-orange-100 p-8 md:p-12 rounded-2xl shadow-xl reveal">
         <div class="grid md:grid-cols-2 gap-8 items-center">
           <div>
@@ -359,6 +325,7 @@
           <div class="inline-block bg-green-100 text-green-800 px-5 py-2 rounded-full text-sm font-bold">👔 Executive Committee</div>
         </div>
 
+        <!-- President -->
         <div class="max-w-lg mx-auto mb-10 reveal">
           <div class="leader-card bg-gradient-to-br from-green-50 via-yellow-50 to-red-50 p-8 rounded-2xl shadow-xl text-center border-2 border-green-200">
             <div class="w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden shadow-2xl border-4 border-white">
@@ -371,6 +338,7 @@
           </div>
         </div>
 
+        <!-- VP + Gen Secretary -->
         <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-8">
           <div class="reveal">
             <div class="leader-card bg-white p-6 rounded-2xl shadow-xl text-center border-2 border-transparent hover:border-yellow-400">
@@ -394,6 +362,7 @@
           </div>
         </div>
 
+        <!-- Other Executives -->
         <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div class="reveal">
             <div class="leader-card bg-white p-5 rounded-2xl shadow-lg text-center border-2 border-transparent hover:border-purple-400">
@@ -436,26 +405,26 @@
           <p class="text-gray-500 mt-2">Core leaders represent their respective countries and serve as the link between their nationals and the WAU executive committee</p>
         </div>
         <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4 max-w-4xl mx-auto">
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇼</div><p class="text-sm font-bold text-gray-800">Botswana</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇿🇲</div><p class="text-sm font-bold text-gray-800">Zambia</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇸</div><p class="text-sm font-bold text-gray-800">Lesotho</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇦</div><p class="text-sm font-bold text-gray-800">Morocco</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇮</div><p class="text-sm font-bold text-gray-800">Burundi</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇬🇭</div><p class="text-sm font-bold text-gray-800">Ghana</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇳🇦</div><p class="text-sm font-bold text-gray-800">Namibia</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇰🇪</div><p class="text-sm font-bold text-gray-800">Kenya</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇷</div><p class="text-sm font-bold text-gray-800">Liberia</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇱</div><p class="text-sm font-bold text-gray-800">Sierra Leone</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇲</div><p class="text-sm font-bold text-gray-800">Cameroon</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇫</div><p class="text-sm font-bold text-gray-800">C.A.R.</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇩🇯</div><p class="text-sm font-bold text-gray-800">Djibouti</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇼</div><p class="text-sm font-bold text-gray-800">Malawi</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇴</div><p class="text-sm font-bold text-gray-800">Somalia</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇺🇬</div><p class="text-sm font-bold text-gray-800">Uganda</p></div>
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇦🇴</div><p class="text-sm font-bold text-gray-800">Angola</p></div>
-  <!-- ✅ Zimbabwe added -->
-  <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇿🇼</div><p class="text-sm font-bold text-gray-800">Zimbabwe</p></div>
-</div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇼</div><p class="text-sm font-bold text-gray-800">Botswana</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇿🇲</div><p class="text-sm font-bold text-gray-800">Zambia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇸</div><p class="text-sm font-bold text-gray-800">Lesotho</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇦</div><p class="text-sm font-bold text-gray-800">Morocco</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇧🇮</div><p class="text-sm font-bold text-gray-800">Burundi</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇬🇭</div><p class="text-sm font-bold text-gray-800">Ghana</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇳🇦</div><p class="text-sm font-bold text-gray-800">Namibia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇰🇪</div><p class="text-sm font-bold text-gray-800">Kenya</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇱🇷</div><p class="text-sm font-bold text-gray-800">Liberia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇱</div><p class="text-sm font-bold text-gray-800">Sierra Leone</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇲</div><p class="text-sm font-bold text-gray-800">Cameroon</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇨🇫</div><p class="text-sm font-bold text-gray-800">C.A.R.</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇩🇯</div><p class="text-sm font-bold text-gray-800">Djibouti</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇲🇼</div><p class="text-sm font-bold text-gray-800">Malawi</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇸🇴</div><p class="text-sm font-bold text-gray-800">Somalia</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇺🇬</div><p class="text-sm font-bold text-gray-800">Uganda</p></div>
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇦🇴</div><p class="text-sm font-bold text-gray-800">Angola</p></div>
+          <!-- ✅ Zimbabwe added -->
+          <div class="bg-white p-4 rounded-xl shadow-md text-center card-hover border-2 border-transparent hover:border-green-400"><div class="text-4xl mb-2">🇿🇼</div><p class="text-sm font-bold text-gray-800">Zimbabwe</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -463,13 +432,12 @@
   <!-- GALLERY & VIDEOS -->
   <section id="gallery" class="py-20 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
-
       <div class="text-center mb-12 reveal">
         <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gradient-g2y">Our Moments</h2>
         <p class="text-gray-600 text-lg">Memories from our events, celebrations, and community gatherings</p>
       </div>
 
-      <!-- ══ VIDEOS — 100% local MP4 files ══ -->
+      <!-- VIDEOS -->
       <div class="mb-16 reveal">
         <h3 class="text-2xl font-bold text-gray-800 mb-6">🎬 Videos</h3>
         <div class="grid md:grid-cols-2 gap-8">
@@ -520,7 +488,6 @@
         <h3 class="text-2xl font-bold text-gray-800 mb-6">📸 Photo Gallery</h3>
         <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
       </div>
-
     </div>
   </section>
 
@@ -606,16 +573,14 @@ function initVideo(videoId, wrapperId, fallbackId) {
   const wrapper  = document.getElementById(wrapperId);
   const fallback = document.getElementById(fallbackId);
   if (!vid) return;
-
   function showFallback() {
-    wrapper.style.display  = 'none';
+    wrapper.style.display = 'none';
     fallback.classList.add('show');
   }
-
   vid.addEventListener('error', showFallback);
-  vid.querySelector('source').addEventListener('error', showFallback);
+  const src = vid.querySelector('source');
+  if (src) src.addEventListener('error', showFallback);
 }
-
 initVideo('v1', 'vw1', 'vf1');
 initVideo('v2', 'vw2', 'vf2');
 
@@ -635,11 +600,11 @@ galleryImages.forEach((item, idx) => {
   div.setAttribute('aria-label', `View photo ${idx + 1}`);
 
   const img = document.createElement('img');
-  img.src      = item.src;
-  img.alt      = item.alt;
+  img.src       = item.src;
+  img.alt       = item.alt;
   img.className = 'w-full h-full object-cover';
-  img.loading  = 'lazy';
-  img.decoding = 'async';
+  img.loading   = 'lazy';
+  img.decoding  = 'async';
   img.addEventListener('load',  () => { div.classList.replace('loading', 'loaded'); });
   img.addEventListener('error', () => { div.style.display = 'none'; });
 
@@ -647,7 +612,10 @@ galleryImages.forEach((item, idx) => {
   grid.appendChild(div);
 });
 
-grid.addEventListener('click',   e => { const t = e.target.closest('[data-index]'); if (t) openLB(+t.dataset.index); });
+grid.addEventListener('click', e => {
+  const t = e.target.closest('[data-index]');
+  if (t) openLB(+t.dataset.index);
+});
 grid.addEventListener('keydown', e => {
   if (e.key === 'Enter' || e.key === ' ') {
     const t = e.target.closest('[data-index]');
@@ -699,8 +667,11 @@ document.addEventListener('keydown', e => {
 });
 
 let tx = 0;
-lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; },        { passive: true });
-lb.addEventListener('touchend',   e => { const d = tx - e.changedTouches[0].clientX; if (Math.abs(d) > 50) navLB(d > 0 ? 1 : -1); }, { passive: true });
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend',   e => {
+  const d = tx - e.changedTouches[0].clientX;
+  if (Math.abs(d) > 50) navLB(d > 0 ? 1 : -1);
+}, { passive: true });
 
 /* ── SCROLL REVEAL ── */
 const ro = new IntersectionObserver(entries => {
@@ -723,10 +694,12 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 /* ── ACTIVE NAV ── */
 window.addEventListener('scroll', () => {
-  let cur = '';
-  document.querySelectorAll('section[id]').forEach(s => { if (scrollY >= s.offsetTop - 120) cur = s.id; });
+  let current = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (scrollY >= s.offsetTop - 120) current = s.id;
+  });
   document.querySelectorAll('nav a[href^="#"]').forEach(a => {
-    const on = a.getAttribute('href') === '#' + cur;
+    const on = a.getAttribute('href') === '#' + current;
     a.classList.toggle('text-green-600', on);
     a.classList.toggle('font-bold', on);
   });
